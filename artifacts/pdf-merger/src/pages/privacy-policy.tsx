@@ -193,7 +193,7 @@ export default function PrivacyPolicy() {
                 : "If you have any questions, concerns, or requests regarding this Privacy Policy, please contact the developer directly:"}
             </p>
             <div className="mt-3 p-4 bg-muted/40 rounded-xl space-y-1 text-xs sm:text-sm">
-              <p><strong>Developer:</strong> Mohammad Saiful Islam</p>
+              <p><strong>Developer:</strong> Mohammad Siful Islam</p>
               <p><strong>Email:</strong> <a href="mailto:saifulbd97@gmail.com" className="text-indigo-600 hover:underline">saifulbd97@gmail.com</a></p>
               <p><strong>Application:</strong> Daily Expense Tracker</p>
             </div>

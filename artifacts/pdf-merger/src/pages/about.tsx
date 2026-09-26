@@ -33,7 +33,7 @@ export default function About() {
           <div className="w-28 h-28 rounded-full overflow-hidden ring-4 ring-indigo-100 shadow-lg">
             <img
               src={`${base}/profile.jpg`}
-              alt="Mohammad Saiful Islam"
+              alt="Mohammad Siful Islam"
               className="w-full h-full object-cover object-top"
             />
           </div>
@@ -41,7 +41,7 @@ export default function About() {
 
         {/* Name & tagline */}
         <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">
-          Mohammad Saiful Islam
+          Mohammad Siful Islam
         </h1>
         <p className="text-sm text-indigo-500 font-medium mb-6">Creator of Toolsono</p>
 
