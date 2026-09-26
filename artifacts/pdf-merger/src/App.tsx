@@ -13,6 +13,7 @@ import PdfToJpg from "@/pages/pdf-to-jpg";
 import Split from "@/pages/split";
 import Compress from "@/pages/compress";
 import About from "@/pages/about";
+import PrivacyPolicy from "@/pages/privacy-policy";
 import Scanner from "@/pages/scanner";
 import BgRemover from "@/pages/bg-remover";
 import PdfSign from "@/pages/pdf-sign";
@@ -49,6 +50,7 @@ function Navbar() {
       </Link>
       <div className="flex items-center gap-5">
         <NavLink href="/about">About</NavLink>
+        <NavLink href="/privacy-policy">Privacy Policy</NavLink>
         <LanguageToggle />
       </div>
     </nav>
@@ -60,6 +62,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Landing} />
       <Route path="/about" component={About} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/privacy" component={PrivacyPolicy} />
       <Route path="/scanner" component={Scanner} />
       <Route path="/pdf" component={Dashboard} />
       <Route path="/pdf/merge" component={MergePdf} />

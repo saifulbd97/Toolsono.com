@@ -61,7 +61,7 @@ function quadArea(tl: Pt, tr: Pt, br: Pt, bl: Pt): number {
 // ─── Auto-crop: improved pure-JS edge detection with convex hull ───────────────
 // Pipeline: thumbnail → local contrast norm → Sobel → hull of edge pixels
 // → 4-corner extraction via x+y / x-y diagonals. Works on rotated documents.
-function autoDetectCorners(canvas: HTMLCanvasElement): Corners {
+function autoDetectCorners(canvas: HTMLCanvasElement): Corners | null {
   const MAX = 320;
   const scale = Math.min(1, MAX / Math.max(canvas.width, canvas.height));
   const tw = Math.round(canvas.width * scale);
@@ -959,7 +959,7 @@ export default function Scanner() {
       const img = await pdf.embedJpg(bytes);
       const page = pdf.addPage([img.width, img.height]);
       page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
-      const blob = new Blob([await pdf.save()], { type: "application/pdf" });
+      const blob = new Blob([await pdf.save() as BlobPart], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a"); a.href = url;
       a.download = `scan-${Date.now()}.pdf`; a.click();
@@ -1041,7 +1041,7 @@ export default function Scanner() {
         page.drawImage(img, { x: (A4W - w) / 2, y: (A4H - h) / 2, width: w, height: h });
       }
 
-      const blob = new Blob([await pdf.save()], { type: "application/pdf" });
+      const blob = new Blob([await pdf.save() as BlobPart], { type: "application/pdf" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.download = `id-card-a4-${Date.now()}.pdf`;

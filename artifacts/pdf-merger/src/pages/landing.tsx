@@ -10,7 +10,7 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
 };
 
 interface CategoryCard {
@@ -142,6 +142,16 @@ export default function Landing() {
         >
           {t.homeFootnote}
         </motion.p>
+
+        <div className="flex items-center justify-center gap-6 mt-6 text-xs text-muted-foreground">
+          <Link href="/about">
+            <span className="hover:text-indigo-600 cursor-pointer transition-colors">About</span>
+          </Link>
+          <span>•</span>
+          <Link href="/privacy-policy">
+            <span className="hover:text-indigo-600 cursor-pointer transition-colors">Privacy Policy</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import express, { type Express } from "express";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
 import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
@@ -33,6 +34,7 @@ const allowedOrigins = [
   /\.replit\.dev$/,
   /\.replit\.app$/,
   /\.onrender\.com$/,
+  /\.run\.app$/,
   /^http:\/\/localhost/,
 ];
 
@@ -54,8 +56,8 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
 app.use("/api", router);
 
-if (process.env.NODE_ENV === "production") {
-  const staticDir = path.resolve(__dirname, "../../pdf-merger/dist/public");
+const staticDir = path.resolve(__dirname, "../../pdf-merger/dist/public");
+if (fs.existsSync(staticDir)) {
   app.use(express.static(staticDir));
   app.get(/^(?!\/api).*/, (_req, res) => {
     res.sendFile(path.join(staticDir, "index.html"));

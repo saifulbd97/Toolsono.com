@@ -1,0 +1,8 @@
+{
+  "name": "Toolcraft",
+  "description": "All-in-one PDF and document tools suite: merge, split, compress, convert, sign, scan documents and remove image backgrounds.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

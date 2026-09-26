@@ -289,7 +289,7 @@ export default function PdfSign() {
       }
 
       const out = await doc.save();
-      const url = URL.createObjectURL(new Blob([out], { type: "application/pdf" }));
+      const url = URL.createObjectURL(new Blob([out as BlobPart], { type: "application/pdf" }));
       const a = document.createElement("a");
       a.href = url;
       a.download = pdfFile.name.replace(/\.pdf$/i, "-signed.pdf");

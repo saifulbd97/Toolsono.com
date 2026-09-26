@@ -94,6 +94,15 @@ export default function About() {
         <p className="mt-8 text-sm text-muted-foreground leading-relaxed">
           Building free, fast, and privacy-friendly tools so everyone can work smarter — no sign-up required.
         </p>
+
+        <div className="mt-6 pt-6 border-t border-border">
+          <a
+            href="/privacy-policy"
+            className="text-xs font-medium text-indigo-600 hover:text-indigo-700 hover:underline"
+          >
+            Privacy Policy & Terms
+          </a>
+        </div>
       </motion.div>
     </div>
   );

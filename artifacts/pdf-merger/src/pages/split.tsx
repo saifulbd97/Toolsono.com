@@ -191,14 +191,14 @@ export default function Split() {
                   <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3">
                     <div className="flex-1">
                       <label className="text-xs font-medium text-muted-foreground mb-1.5 block">{t.fromPage}</label>
-                      <input type="number" min={1} max={pageCount} value={fromPage} onChange={(e) => setFromPage(e.target.value)}
+                      <input type="number" min={1} max={pageCount} value={fromPage} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFromPage(e.target.value)}
                         className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400"
                         data-testid="input-from" />
                     </div>
                     <div className="pt-5 text-muted-foreground text-sm">{t.to}</div>
                     <div className="flex-1">
                       <label className="text-xs font-medium text-muted-foreground mb-1.5 block">{t.toPage}</label>
-                      <input type="number" min={1} max={pageCount} value={toPage} onChange={(e) => setToPage(e.target.value)}
+                      <input type="number" min={1} max={pageCount} value={toPage} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setToPage(e.target.value)}
                         className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-purple-400"
                         data-testid="input-to" />
                     </div>

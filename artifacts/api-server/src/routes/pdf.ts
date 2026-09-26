@@ -262,21 +262,53 @@ router.post("/pdf/pdf-to-jpg", pdfOnly.single("file"), async (req, res) => {
     await writeFile(tmpIn, file.buffer);
     await mkdir(tmpOut, { recursive: true });
 
-    const outPrefix = join(tmpOut, "page");
+    const outPrefix = join(tmpOut, "page-%03d.jpg");
 
     await new Promise<void>((resolve, reject) => {
-      const proc = spawn("pdftoppm", [
-        "-jpeg",
-        "-jpegopt", "quality=92",
-        "-r", "150",
+      // Try Ghostscript first since gs is installed in this environment
+      const proc = spawn("gs", [
+        "-sDEVICE=jpeg",
+        "-dJPEGQ=92",
+        "-r150",
+        "-dNOPAUSE",
+        "-dBATCH",
+        "-dQUIET",
+        `-sOutputFile=${outPrefix}`,
         tmpIn,
-        outPrefix,
       ]);
       proc.on("close", (code) => {
         if (code === 0) resolve();
-        else reject(new Error(`pdftoppm exited with code ${code}`));
+        else {
+          // Fallback to pdftoppm if gs fails
+          const fallback = spawn("pdftoppm", [
+            "-jpeg",
+            "-jpegopt", "quality=92",
+            "-r", "150",
+            tmpIn,
+            join(tmpOut, "page"),
+          ]);
+          fallback.on("close", (fbCode) => {
+            if (fbCode === 0) resolve();
+            else reject(new Error(`PDF extraction failed with code ${code}`));
+          });
+          fallback.on("error", () => reject(new Error(`PDF extraction failed with code ${code}`)));
+        }
       });
-      proc.on("error", reject);
+      proc.on("error", () => {
+        // If gs not found, try pdftoppm
+        const fallback = spawn("pdftoppm", [
+          "-jpeg",
+          "-jpegopt", "quality=92",
+          "-r", "150",
+          tmpIn,
+          join(tmpOut, "page"),
+        ]);
+        fallback.on("close", (fbCode) => {
+          if (fbCode === 0) resolve();
+          else reject(new Error("Neither gs nor pdftoppm could extract pages"));
+        });
+        fallback.on("error", reject);
+      });
     });
 
     const filenames = (await readdir(tmpOut))
