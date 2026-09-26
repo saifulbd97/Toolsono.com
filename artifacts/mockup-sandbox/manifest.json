@@ -1,21 +1,39 @@
 {
-  "name": "Toolsono",
+  "name": "Toolsono - Daily Expense Tracker & Web Tools",
   "short_name": "Toolsono",
-  "description": "Toolsono Web Tools and Utilities",
+  "description": "Toolsono is a comprehensive web utility suite featuring a Daily Expense Tracker, Document Scanner, PDF Tools (merge, split, compress, convert, sign), and Background Remover.",
   "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#4f46e5",
+  "categories": ["finance", "productivity", "utilities"],
   "icons": [
     {
-      "src": "https://www.toolsono.com/icon-192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "https://www.toolsono.com/icon-512.png",
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
