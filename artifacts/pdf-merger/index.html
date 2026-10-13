@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Toolcraft</title>
+    <title>Toolsono - Web Tools & Daily Expense Tracker</title>
     <meta name="description" content="All-in-one PDF and document tools suite: merge, split, compress, convert, sign, scan documents and remove image backgrounds." />
-    <meta property="og:title" content="Toolcraft" />
+    <meta property="og:title" content="Toolsono" />
     <meta property="og:description" content="All-in-one PDF and document tools suite: merge, split, compress, convert, sign, scan documents and remove image backgrounds." />
     <meta name="theme-color" content="#4f46e5" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -25,7 +25,9 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
+          navigator.serviceWorker.register('/sw.js').then((reg) => {
+            reg.update().catch(() => {});
+          }).catch(() => {});
         });
       }
     </script>

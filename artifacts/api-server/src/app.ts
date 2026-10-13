@@ -35,6 +35,9 @@ const allowedOrigins = [
   /\.replit\.app$/,
   /\.onrender\.com$/,
   /\.run\.app$/,
+  /\.toolsono\.com$/,
+  "https://toolsono.com",
+  "https://www.toolsono.com",
   /^http:\/\/localhost/,
 ];
 
