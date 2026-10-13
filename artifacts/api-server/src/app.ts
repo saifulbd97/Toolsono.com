@@ -63,6 +63,9 @@ const staticDir = path.resolve(__dirname, "../../pdf-merger/dist/public");
 if (fs.existsSync(staticDir)) {
   app.use(express.static(staticDir));
   app.get(/^(?!\/api).*/, (_req, res) => {
+    res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.set("Pragma", "no-cache");
+    res.set("Expires", "0");
     res.sendFile(path.join(staticDir, "index.html"));
   });
 }

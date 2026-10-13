@@ -1,42 +1,18 @@
-const CACHE_NAME = 'toolsono-v2';
-
 self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      )
-    ).then(() => self.clients.claim())
+    caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))))
+      .then(() => self.registration.unregister())
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then(clients => {
+        clients.forEach(c => c.navigate(c.url));
+      })
   );
 });
 
 self.addEventListener('fetch', event => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match('/'))
-    );
-    return;
-  }
-
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        if (response && response.status === 200 && response.type === 'basic') {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseToCache);
-          }).catch(() => {});
-        }
-        return response;
-      })
-      .catch(() => caches.match(event.request))
-  );
+  event.respondWith(fetch(event.request));
 });

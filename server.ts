@@ -26,6 +26,9 @@ const clientDist = path.resolve(__dirname, "artifacts/pdf-merger/dist/public");
 if (isProduction || fs.existsSync(path.join(clientDist, "index.html"))) {
   app.use(express.static(clientDist));
   app.get(/^(?!\/api).*/, (_req, res) => {
+    res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.set("Pragma", "no-cache");
+    res.set("Expires", "0");
     res.sendFile(path.join(clientDist, "index.html"));
   });
 } else {
