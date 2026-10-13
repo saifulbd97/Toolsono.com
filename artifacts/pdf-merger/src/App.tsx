@@ -14,6 +14,7 @@ import Split from "@/pages/split";
 import Compress from "@/pages/compress";
 import About from "@/pages/about";
 import PrivacyPolicy from "@/pages/privacy-policy";
+import JmmPrivacyPolicy from "@/pages/jmm-privacy-policy";
 import Scanner from "@/pages/scanner";
 import BgRemover from "@/pages/bg-remover";
 import PdfSign from "@/pages/pdf-sign";
@@ -64,6 +65,8 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/privacy" component={PrivacyPolicy} />
+      <Route path="/jmm/privacy-policy" component={JmmPrivacyPolicy} />
+      <Route path="/jmm/privacy" component={JmmPrivacyPolicy} />
       <Route path="/scanner" component={Scanner} />
       <Route path="/pdf" component={Dashboard} />
       <Route path="/pdf/merge" component={MergePdf} />
